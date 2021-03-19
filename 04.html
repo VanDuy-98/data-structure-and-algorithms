@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04</title>
+</head>
+<body>
+<h1>Chèn phần tử vào mảng</h1>
+<div>
+    Nhập số nguyên dương n: <input type="text" id="inputN">
+</div>
+<div>
+    Nhập n số phần tử mảng: <input type="text" id="inputElementArray">
+    <input type="submit" id="addToArray" value="Thêm vào mảng">
+</div>
+<div>
+    Số nguyên k (0 ≤ k ≤ n): <input type="text" id="inputK">
+</div>
+<div>
+    Số nguyên x: <input type="text" id="inputX">
+</div>
+
+<div id="result">
+    <p id="inputArray"></p>
+    <p id="outputArray"></p>
+</div>
+<input type="submit" value="Tính toán" id="submit">
+</body>
+
+<script type="application/javascript">
+  window.onload = function () {
+    let n = document.querySelector("#inputN");
+    let inputElementArray = document.querySelector("#inputElementArray");
+    let btnAddToArray = document.querySelector("#addToArray");
+    let inputArray = document.querySelector("#inputArray");
+    let outputArray = document.querySelector("#outputArray");
+    let inputK = document.querySelector("#inputK");
+    let inputX = document.querySelector("#inputX");
+    let submit = document.querySelector("#submit");
+    let a = [];
+    let i = 1;
+
+    btnAddToArray.addEventListener('click', createArrayFromInput);
+    submit.addEventListener('click', insertValueToArray);
+
+    function createArrayFromInput() {
+      let amountArray = Number(n.value);
+      let elementArray = Number(inputElementArray.value);
+
+      if (i === amountArray) {
+        a.push(elementArray);
+        btnAddToArray.disabled = true;
+        inputElementArray.disabled = true;
+        inputArray.textContent = "Mảng đã nhập: " + a;
+      } else {
+        a.push(elementArray);
+      }
+      i++;
+      inputElementArray.value = "";
+      inputElementArray.focus();
+    }
+
+    function insertValueToArray() {
+      let k = Number(inputK.value);
+      let x = Number(inputX.value);
+      let amountArray = Number(n.value);
+      console.log(amountArray);
+      if (0 <= k && k <= amountArray) {
+        a.splice(k, 0, x);
+        outputArray.textContent = "Mảng sau tính toán: " + a;
+      } else {
+        alert('invalid input k');
+      }
+    }
+
+  }
+
+</script>
+<!--<script src="script.js"></script>-->
+</html>

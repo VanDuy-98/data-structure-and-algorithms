@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02</title>
+</head>
+<body>
+<h1>Tính tổng các phần tử mảng</h1>
+
+<div>
+    Nhập số nguyên dương n: <input type="text" id="inputN">
+</div>
+
+<div>
+    Nhập n số phần tử mảng: <input type="text" id="inputElementArray">
+    <input type="submit" id="addToArray" value="Thêm vào mảng">
+</div>
+
+<div>
+    <p id="inputArray"></p>
+    <p id="result"></p>
+</div>
+
+<input type="submit" value="Tính toán" id="submit">
+</body>
+
+<script>
+  window.onload = function () {
+    let n = document.querySelector("#inputN");
+    let inputElementArray = document.querySelector("#inputElementArray");
+    let btnAddToArray = document.querySelector("#addToArray");
+    let inputArray = document.querySelector("#inputArray");
+    let result = document.querySelector("#result");
+    let submit = document.querySelector("#submit");
+    let i = 1;
+    let a = [];
+    let sum = 0;
+
+    submit.addEventListener('click', sumElementArray);
+    btnAddToArray.addEventListener('click', createArrayFromInput);
+
+    function createArrayFromInput() {
+      let amountArray = Number(n.value);
+      let elementArray = Number(inputElementArray.value);
+
+      if (i === amountArray) {
+        a.push(elementArray);
+        btnAddToArray.disabled = true;
+        inputElementArray.disabled = true;
+        inputArray.textContent = "Mảng đã nhập: " + a;
+      } else {
+        a.push(elementArray);
+      }
+      i++;
+      inputElementArray.value = "";
+      inputElementArray.focus();
+    }
+
+    function sumElementArray()
+    {
+      for (let i = 0; i < a.length; i++) {
+        sum += Number(a[i]);
+      }
+      result.textContent = "Tổng các phần tử trong mảng: " + sum;
+    }
+  }
+</script>
+</html>
