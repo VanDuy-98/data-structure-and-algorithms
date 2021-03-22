@@ -10,7 +10,7 @@
     Nhập số nguyên dương n: <input type="text" id="inputN">
 </div>
 <div>
-    Nhập n số phần tử mảng: <input type="text" id="inputElementArray">
+    Nhập n số phần tử mảng: <input type="text" id="inputElementOfArray">
     <input type="submit" id="addToArray" value="Thêm vào mảng">
 </div>
 <div>
@@ -20,9 +20,9 @@
     Số nguyên x: <input type="text" id="inputX">
 </div>
 
-<div id="result">
-    <p id="inputArray"></p>
-    <p id="outputArray"></p>
+<div>
+    <p id="arrayOutput"></p>
+    <p id="result"></p>
 </div>
 <input type="submit" value="Tính toán" id="submit">
 </body>
@@ -30,44 +30,52 @@
 <script type="application/javascript">
   window.onload = function () {
     let n = document.querySelector("#inputN");
-    let inputElementArray = document.querySelector("#inputElementArray");
+    let inputElementOfArray = document.querySelector("#inputElementOfArray");
     let btnAddToArray = document.querySelector("#addToArray");
-    let inputArray = document.querySelector("#inputArray");
-    let outputArray = document.querySelector("#outputArray");
+    let arrayOutput = document.querySelector("#arrayOutput");
+    let result = document.querySelector("#result");
     let inputK = document.querySelector("#inputK");
     let inputX = document.querySelector("#inputX");
-    let submit = document.querySelector("#submit");
-    let a = [];
-    let i = 1;
+    let btnSubmit = document.querySelector("#submit");
+    let arrayA = [];
+    let numberTimeInput = 1;
 
     btnAddToArray.addEventListener('click', createArrayFromInput);
-    submit.addEventListener('click', insertValueToArray);
+    btnSubmit.addEventListener('click', insertValueToArray);
 
     function createArrayFromInput() {
       let amountArray = Number(n.value);
-      let elementArray = Number(inputElementArray.value);
+      let elementArray = Number(inputElementOfArray.value);
 
-      if (i === amountArray) {
-        a.push(elementArray);
+      if (numberTimeInput === amountArray) {
+        arrayA.push(elementArray);
         btnAddToArray.disabled = true;
-        inputElementArray.disabled = true;
-        inputArray.textContent = "Mảng đã nhập: " + a;
+        inputElementOfArray.disabled = true;
+        arrayOutput.textContent = "Mảng đã nhập: " + arrayA;
       } else {
-        a.push(elementArray);
+        arrayA.push(elementArray);
       }
-      i++;
-      inputElementArray.value = "";
-      inputElementArray.focus();
+      numberTimeInput++;
+      inputElementOfArray.value = "";
+      inputElementOfArray.focus();
     }
 
     function insertValueToArray() {
       let k = Number(inputK.value);
       let x = Number(inputX.value);
+      let i;
       let amountArray = Number(n.value);
-      console.log(amountArray);
       if (0 <= k && k <= amountArray) {
-        a.splice(k, 0, x);
-        outputArray.textContent = "Mảng sau tính toán: " + a;
+        for (i = amountArray; i >= k+1; i--){
+          arrayA[i] = arrayA[i-1];
+        }
+        arrayA[k] = x;
+
+        result.textContent = "Mảng sau tính toán: "
+        for (i in arrayA)
+        {
+          result.textContent += arrayA[i] + " ";
+        }
       } else {
         alert('invalid input k');
       }
@@ -76,5 +84,4 @@
   }
 
 </script>
-<!--<script src="script.js"></script>-->
 </html>

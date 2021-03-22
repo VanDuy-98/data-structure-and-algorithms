@@ -12,12 +12,12 @@
 </div>
 
 <div>
-    Nhập n số phần tử mảng: <input type="text" id="inputElementArray">
+    Nhập n số phần tử mảng: <input type="text" id="inputElementOfArray">
     <input type="submit" id="addToArray" value="Thêm vào mảng">
 </div>
 
 <div>
-    <p id="inputArray"></p>
+    <p id="arrayOutput"></p>
     <p id="result"></p>
 </div>
 
@@ -27,43 +27,43 @@
 <script>
   window.onload = function () {
     let n = document.querySelector("#inputN");
-    let inputElementArray = document.querySelector("#inputElementArray");
+    let inputElementOfArray = document.querySelector("#inputElementOfArray");
     let btnAddToArray = document.querySelector("#addToArray");
-    let inputArray = document.querySelector("#inputArray");
+    let arrayOutput = document.querySelector("#arrayOutput");
     let result = document.querySelector("#result");
-    let submit = document.querySelector("#submit");
-    let i = 1;
-    let a = [];
-    let sum = 0;
+    let btnSubmit = document.querySelector("#submit");
+    let numberTimeInput = 1;
+    let arrayA = [];
 
-    submit.addEventListener('click', squareElementArray);
+    btnSubmit.addEventListener('click', squareElementArray);
     btnAddToArray.addEventListener('click', createArrayFromInput);
 
     function createArrayFromInput() {
       let amountArray = Number(n.value);
-      let elementArray = Number(inputElementArray.value);
+      let elementArray = Number(inputElementOfArray.value);
 
-      if (i === amountArray) {
-        a.push(elementArray);
+      if (numberTimeInput === amountArray) {
+        arrayA.push(elementArray);
         btnAddToArray.disabled = true;
-        inputElementArray.disabled = true;
-        inputArray.textContent = "Mảng đã nhập: " + a;
+        inputElementOfArray.disabled = true;
+        arrayOutput.textContent = "Mảng đã nhập: " + arrayA;
       } else {
-        a.push(elementArray);
+        arrayA.push(elementArray);
       }
-      i++;
-      inputElementArray.value = "";
-      inputElementArray.focus();
+      numberTimeInput++;
+      inputElementOfArray.value = "";
+      inputElementOfArray.focus();
     }
 
     function squareElementArray()
     {
-      for (i = 0; i < a.length; i++) {
-        a[i] = Math.pow(a[i], 2);
+      let i;
+      for (i = 0; i < arrayA.length; i++) {
+        arrayA[i] = arrayA[i] ** 2;
       }
       result.textContent = "Bình các phần tử trong mảng: ";
-      for (i in a) {
-        result.textContent += a[i] + " ";
+      for (i in arrayA) {
+        result.textContent += arrayA[i] + " ";
       }
     }
   }

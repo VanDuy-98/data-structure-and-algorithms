@@ -16,4 +16,21 @@ function printResult(output) {
   document.body.appendChild(result);
 }
 
+function createArrayFromInput(amountArray, elementArray, btnAddToArray, inputElementArray, inputArray) {
+  amountArray = Number(amountArray);
+  elementArray = Number(elementArray);
+  let a = [];
+
+  if (i === amountArray) {
+    a.push(elementArray);
+    btnAddToArray.disabled = true;
+    inputElementArray.disabled = true;
+    inputArray.textContent = "Mảng đã nhập: " + a;
+  } else {
+    a.push(elementArray);
+  }
+  i++;
+  inputElementArray.value = "";
+  inputElementArray.focus();
+}
 
