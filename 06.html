@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>02</title>
+    <title>06</title>
 </head>
 <body>
-<h1>Tính tổng các phần tử mảng</h1>
+<h1>Tìm số nguyên tố có trong mảng</h1>
 
 <div>
     Nhập số nguyên dương n: <input type="text" id="inputN">
@@ -34,10 +34,9 @@
     let btnSubmit = document.querySelector("#submit");
     let numberTimeInput = 1;
     let arrayA = [];
-    let sum = 0;
 
     btnAddToArray.addEventListener('click', createArrayFromInput);
-    btnSubmit.addEventListener('click', sumElementArray);
+    btnSubmit.addEventListener('click', getPrimeNumber);
 
     function createArrayFromInput() {
       let amountArray = Number(n.value);
@@ -56,13 +55,29 @@
       inputElementOfArray.focus();
     }
 
-    function sumElementArray()
-    {
+    function getPrimeNumber() {
+      let primeNumber = "";
       for (let i = 0; i < arrayA.length; i++) {
-        sum += Number(arrayA[i]);
+        if (isPrime(arrayA[i])) {
+          primeNumber += arrayA[i] + " ";
+        }
       }
-      result.textContent = "Tổng các phần tử trong mảng: " + sum;
+      result.textContent = "Mảng sau tính toán: " + primeNumber;
+    }
+
+    function isPrime(n) {
+      if (n < 2) {
+        return false
+      } else {
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+          if (n % i == 0) {
+            return false;
+          }
+        }
+        return true;
+      }
     }
   }
+
 </script>
 </html>

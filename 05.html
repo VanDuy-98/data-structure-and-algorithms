@@ -2,28 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>02</title>
+    <title>05</title>
 </head>
 <body>
-<h1>Tính tổng các phần tử mảng</h1>
-
+<h1>Xóa phần tử khỏi mảng</h1>
 <div>
     Nhập số nguyên dương n: <input type="text" id="inputN">
 </div>
-
 <div>
     Nhập n số phần tử mảng: <input type="text" id="inputElementOfArray">
     <input type="submit" id="addToArray" value="Thêm vào mảng">
 </div>
-
+<div>
+    Số nguyên k (0 ≤ k ≤ n): <input type="text" id="inputK">
+</div>
 <div>
     <p id="arrayOutput"></p>
     <p id="result"></p>
 </div>
-
 <input type="submit" value="Tính toán" id="submit">
 </body>
-
 <script>
   window.onload = function () {
     let n = document.querySelector("#inputN");
@@ -31,13 +29,13 @@
     let btnAddToArray = document.querySelector("#addToArray");
     let arrayOutput = document.querySelector("#arrayOutput");
     let result = document.querySelector("#result");
+    let inputK = document.querySelector("#inputK");
     let btnSubmit = document.querySelector("#submit");
-    let numberTimeInput = 1;
     let arrayA = [];
-    let sum = 0;
+    let numberTimeInput = 1;
 
     btnAddToArray.addEventListener('click', createArrayFromInput);
-    btnSubmit.addEventListener('click', sumElementArray);
+    btnSubmit.addEventListener('click', removeElementArray);
 
     function createArrayFromInput() {
       let amountArray = Number(n.value);
@@ -56,12 +54,15 @@
       inputElementOfArray.focus();
     }
 
-    function sumElementArray()
-    {
-      for (let i = 0; i < arrayA.length; i++) {
-        sum += Number(arrayA[i]);
+    function removeElementArray() {
+      let k = Number(inputK.value);
+      let i;
+
+      arrayA.splice(k, 1);
+      result.textContent = "Mảng sau tính toán: ";
+      for (i in arrayA) {
+        result.textContent += arrayA[i] + " ";
       }
-      result.textContent = "Tổng các phần tử trong mảng: " + sum;
     }
   }
 </script>

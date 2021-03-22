@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>02</title>
+    <title>07</title>
 </head>
 <body>
-<h1>Tính tổng các phần tử mảng</h1>
+<h1>Kiểm tra số lần xuất hiện của phần tử trong mảng</h1>
 
 <div>
     Nhập số nguyên dương n: <input type="text" id="inputN">
@@ -34,10 +34,9 @@
     let btnSubmit = document.querySelector("#submit");
     let numberTimeInput = 1;
     let arrayA = [];
-    let sum = 0;
 
     btnAddToArray.addEventListener('click', createArrayFromInput);
-    btnSubmit.addEventListener('click', sumElementArray);
+    btnSubmit.addEventListener('click', getNumberExistElementInArray);
 
     function createArrayFromInput() {
       let amountArray = Number(n.value);
@@ -56,13 +55,30 @@
       inputElementOfArray.focus();
     }
 
-    function sumElementArray()
-    {
-      for (let i = 0; i < arrayA.length; i++) {
-        sum += Number(arrayA[i]);
+    function getNumberExistElementInArray() {
+      let arrayB = [], i, max = arrayA[0];
+
+      for (i = 0; i < arrayA.length; i++) {
+        if (arrayA[i] > max) {
+          max = arrayA[i];
+        }
       }
-      result.textContent = "Tổng các phần tử trong mảng: " + sum;
+
+      for (i = 0; i <= max; i++) {
+        arrayB[i] = 0;
+      }console.log(arrayB);
+
+      for (i = 0; i <= max; i++) {
+        arrayB[arrayA[i]] += 1;
+      }console.log(arrayB);
+      result.textContent = "Mảng sau tính toán: ";
+      for (i = 0; i <= max; i++) {
+        if (arrayB[i] > 0) {
+          result.textContent += arrayA[i] + " - " + arrayB[i] + "; ";
+        }
+      }
     }
   }
+
 </script>
 </html>
