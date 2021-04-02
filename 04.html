@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04</title>
+</head>
+<body>
+<h1>Chèn phần tử vào mảng</h1>
+<div>
+    Nhập số nguyên dương n: <input type="text" id="inputN">
+</div>
+<div>
+    Nhập n số phần tử mảng: <input type="text" id="inputElementOfArray">
+    <input type="submit" id="addToArray" value="Thêm vào mảng">
+</div>
+<div>
+    Số nguyên k (0 ≤ k ≤ n): <input type="text" id="inputK">
+</div>
+<div>
+    Số nguyên x: <input type="text" id="inputX">
+</div>
+
+<div>
+    <p id="arrayOutput"></p>
+    <p id="result"></p>
+</div>
+<input type="submit" value="Tính toán" id="submit">
+</body>
+
+<script type="application/javascript">
+  window.onload = function () {
+    let n = document.querySelector("#inputN");
+    let inputElementOfArray = document.querySelector("#inputElementOfArray");
+    let btnAddToArray = document.querySelector("#addToArray");
+    let arrayOutput = document.querySelector("#arrayOutput");
+    let result = document.querySelector("#result");
+    let inputK = document.querySelector("#inputK");
+    let inputX = document.querySelector("#inputX");
+    let btnSubmit = document.querySelector("#submit");
+    let arrayA = [];
+    let numberTimeInput = 1;
+
+    btnAddToArray.addEventListener('click', createArrayFromInput);
+    btnSubmit.addEventListener('click', insertValueToArray);
+
+    function createArrayFromInput() {
+      let amountArray = Number(n.value);
+      let elementArray = Number(inputElementOfArray.value);
+
+      if (numberTimeInput === amountArray) {
+        arrayA.push(elementArray);
+        btnAddToArray.disabled = true;
+        inputElementOfArray.disabled = true;
+        arrayOutput.textContent = "Mảng đã nhập: " + arrayA;
+      } else {
+        arrayA.push(elementArray);
+      }
+      numberTimeInput++;
+      inputElementOfArray.value = "";
+      inputElementOfArray.focus();
+    }
+
+    function insertValueToArray() {
+      let k = Number(inputK.value);
+      let x = Number(inputX.value);
+      let i;
+      let amountArray = Number(n.value);
+      if (0 <= k && k <= amountArray) {
+        for (i = amountArray; i >= k+1; i--){
+          arrayA[i] = arrayA[i-1];
+        }
+        arrayA[k] = x;
+
+        result.textContent = "Mảng sau tính toán: "
+        for (i in arrayA)
+        {
+          result.textContent += arrayA[i] + " ";
+        }
+      } else {
+        alert('invalid input k');
+      }
+    }
+
+  }
+
+</script>
+</html>

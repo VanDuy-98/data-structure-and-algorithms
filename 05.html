@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05</title>
+</head>
+<body>
+<h1>Xóa phần tử khỏi mảng</h1>
+<div>
+    Nhập số nguyên dương n: <input type="text" id="inputN">
+</div>
+<div>
+    Nhập n số phần tử mảng: <input type="text" id="inputElementOfArray">
+    <input type="submit" id="addToArray" value="Thêm vào mảng">
+</div>
+<div>
+    Số nguyên k (0 ≤ k ≤ n): <input type="text" id="inputK">
+</div>
+<div>
+    <p id="arrayOutput"></p>
+    <p id="result"></p>
+</div>
+<input type="submit" value="Tính toán" id="submit">
+</body>
+<script>
+  window.onload = function () {
+    let n = document.querySelector("#inputN");
+    let inputElementOfArray = document.querySelector("#inputElementOfArray");
+    let btnAddToArray = document.querySelector("#addToArray");
+    let arrayOutput = document.querySelector("#arrayOutput");
+    let result = document.querySelector("#result");
+    let inputK = document.querySelector("#inputK");
+    let btnSubmit = document.querySelector("#submit");
+    let arrayA = [];
+    let numberTimeInput = 1;
+
+    btnAddToArray.addEventListener('click', createArrayFromInput);
+    btnSubmit.addEventListener('click', removeElementArray);
+
+    function createArrayFromInput() {
+      let amountArray = Number(n.value);
+      let elementArray = Number(inputElementOfArray.value);
+
+      if (numberTimeInput === amountArray) {
+        arrayA.push(elementArray);
+        btnAddToArray.disabled = true;
+        inputElementOfArray.disabled = true;
+        arrayOutput.textContent = "Mảng đã nhập: " + arrayA;
+      } else {
+        arrayA.push(elementArray);
+      }
+      numberTimeInput++;
+      inputElementOfArray.value = "";
+      inputElementOfArray.focus();
+    }
+
+    function removeElementArray() {
+      let k = Number(inputK.value);
+      let i;
+
+      arrayA.splice(k, 1);
+      result.textContent = "Mảng sau tính toán: ";
+      for (i in arrayA) {
+        result.textContent += arrayA[i] + " ";
+      }
+    }
+  }
+</script>
+</html>

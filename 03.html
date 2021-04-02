@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03</title>
+</head>
+<body>
+<h1>Tính bình phương từng phần tử mảng</h1>
+
+<div>
+    Nhập số nguyên dương n: <input type="text" id="inputN">
+</div>
+
+<div>
+    Nhập n số phần tử mảng: <input type="text" id="inputElementOfArray">
+    <input type="submit" id="addToArray" value="Thêm vào mảng">
+</div>
+
+<div>
+    <p id="arrayOutput"></p>
+    <p id="result"></p>
+</div>
+
+<input type="submit" value="Tính toán" id="submit">
+</body>
+
+<script>
+  window.onload = function () {
+    let n = document.querySelector("#inputN");
+    let inputElementOfArray = document.querySelector("#inputElementOfArray");
+    let btnAddToArray = document.querySelector("#addToArray");
+    let arrayOutput = document.querySelector("#arrayOutput");
+    let result = document.querySelector("#result");
+    let btnSubmit = document.querySelector("#submit");
+    let numberTimeInput = 1;
+    let arrayA = [];
+
+    btnAddToArray.addEventListener('click', createArrayFromInput);
+    btnSubmit.addEventListener('click', squareElementArray);
+
+    function createArrayFromInput() {
+      let amountArray = Number(n.value);
+      let elementArray = Number(inputElementOfArray.value);
+
+      if (numberTimeInput === amountArray) {
+        arrayA.push(elementArray);
+        btnAddToArray.disabled = true;
+        inputElementOfArray.disabled = true;
+        arrayOutput.textContent = "Mảng đã nhập: " + arrayA;
+      } else {
+        arrayA.push(elementArray);
+      }
+      numberTimeInput++;
+      inputElementOfArray.value = "";
+      inputElementOfArray.focus();
+    }
+
+    function squareElementArray() {
+      let i;
+      for (i = 0; i < arrayA.length; i++) {
+        arrayA[i] = arrayA[i] ** 2;
+      }
+      result.textContent = "Bình các phần tử trong mảng: ";
+      for (i in arrayA) {
+        result.textContent += arrayA[i] + " ";
+      }
+    }
+  }
+</script>
+</html>
